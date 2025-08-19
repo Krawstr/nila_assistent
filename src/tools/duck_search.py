@@ -1,6 +1,5 @@
 from ddgs import DDGS
 from crewai.tools import BaseTool
-# A correção está aqui! Usando o Pydantic padrão (V2).
 from pydantic import BaseModel, Field
 
 class SearchToolInput(BaseModel):
@@ -20,6 +19,3 @@ class SearchTools:
             except Exception as e:
                 return f"Erro ao executar a busca: {e}"
 
-# E no seu arquivo principal (crew.py), você importaria assim:
-# from tools import SearchTools
-# search_tool = SearchTools.DuckDuckGoSearchTool()
