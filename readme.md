@@ -42,35 +42,34 @@ Nila é uma assistente de carreira inteligente e interativa, projetada para resp
 
 ## Estrutura do Projeto
 
-.
-├── app.py                  # Arquivo principal da aplicação Flask
-├── crew.py                 # Define os agentes e tarefas do CrewAI
-├── rag_agent.py            # Cria um agente RAG para ser usado como ferramenta no CrewAI
+├── app.py                  
+├── crew.py                 
+├── rag_agent.py            
 ├── config/
-│   ├── agents.yaml          # Principais configurações dos agentes
+│   ├── agents.yaml          
 │   ├── tasks.yaml 
 ├── tools/
 │   ├── init.py
-│   ├── duck_search.py      # Define a ferramenta de busca DuckDuckGo
-│   └── rag_tool.py         # Define a ferramenta de busca RAG
+│   ├── duck_search.py      
+│   └── rag_tool.py         
 ├── agents/
 │   ├── init.py
-│   └── rag_agent.py        # Implementa a lógica do RAG
+│   └── rag_agent.py        
 ├── templates/
-│   └── index.html          # Arquivo HTML principal para a interface de chat
+│   └── index.html         
 ├── static/
 │   ├── css/
-│   │   └── style.css       # Estilos para a interface de chat
+│   │   └── style.css       
 │   └── js/
-│       └── script.js       # JavaScript para lidar com a interação do usuário e chamadas à API
-└── database/                 # Diretório para o banco de dados vetorial Chroma
+│       └── script.js      
+└── database/           
 
 
 ## Como Começar
 
 ### Pré-requisitos
 
-* Python 3.8+
+* Python 3.8 ou superior
 * pip
 * Uma chave de API do Google AI
 

@@ -74,6 +74,7 @@ class AgentsCrew():
             agents=self.agents, 
             tasks=self.tasks,
             process=Process.sequential,
+            memory=True,
             verbose=True
         )
     
@@ -81,18 +82,18 @@ class AgentsCrew():
         result =self.career_crew().kickoff(inputs=inputs)
         return result.raw
 
-if __name__ == "__main__":
-    print("Iniciando o Crew de Carreira...")
-    my_crew = AgentsCrew()
+# if __name__ == "__main__":
+#     print("Iniciando o Crew de Carreira...")
+#     my_crew = AgentsCrew()
 
-    inputs = {
-        'topic': 'quero saber quanto ganha um analista de sistemas.'
-    }
+#     inputs = {
+#         'topic': 'quero saber quanto ganha um analista de sistemas.'
+#     }
 
-    result = my_crew.career_crew().kickoff(inputs=inputs)
+#     result = my_crew.career_crew().kickoff(inputs=inputs)
 
-    print("\n\n########################")
-    print("## Execução do Crew Finalizada!")
-    print("########################\n")
-    print("Resultado:")
-    print(result)
+#     print("\n\n########################")
+#     print("## Execução do Crew Finalizada!")
+#     print("########################\n")
+#     print("Resultado:")
+#     print(result)

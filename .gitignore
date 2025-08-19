@@ -5,3 +5,5 @@ __pycache__/
 output
 config
 create_db.py
+base
+database
