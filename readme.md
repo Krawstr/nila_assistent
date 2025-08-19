@@ -42,6 +42,7 @@ Nila é uma assistente de carreira inteligente e interativa, projetada para resp
 
 ## Estrutura do Projeto
 
+```
 ├── app.py                  
 ├── crew.py                 
 ├── rag_agent.py            
@@ -63,7 +64,7 @@ Nila é uma assistente de carreira inteligente e interativa, projetada para resp
 │   └── js/
 │       └── script.js      
 └── database/           
-
+```
 
 ## Como Começar
 
