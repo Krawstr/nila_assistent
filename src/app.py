@@ -1,9 +1,8 @@
-from flask import Flask, request, jsonify, render_template, session
+from flask import Flask, request, jsonify, render_template
 from crew import AgentsCrew 
 import os
 import threading
 import uuid 
-
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -12,6 +11,7 @@ task_results = {}
 
 def run_crew_task(task_id, inputs):
     print(f"Iniciando tarefa do Crew (ID: {task_id}) com os inputs: {inputs}")
+    
     try:
         my_crew = AgentsCrew()
         result = my_crew.kickoff(inputs=inputs)
@@ -34,6 +34,7 @@ def run_career_crew():
         return jsonify({"error": "O tópico é obrigatório"}), 400
 
     task_id = str(uuid.uuid4())
+    task_results[task_id] = {"status": "pending"} 
 
     inputs = {'topic': new_topic}
 
@@ -47,8 +48,8 @@ def run_career_crew():
 
 @app.route('/get_result/<task_id>', methods=['GET'])
 def get_result(task_id):
-    result = task_results.get(task_id, {"status": "pending"})
+    result = task_results.get(task_id, {"status": "not_found"})
     return jsonify(result)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, use_reloader=False)

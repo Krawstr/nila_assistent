@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const chatFormButton = document.getElementById('submit-btn'); 
     const chatInput = document.getElementById('topic-input');    
-    const messagesContainer = document.getElementById('messages-container'); 
-    const chatContainer = document.getElementById('chat-container');
+    const chatBox = document.getElementById('messages-container'); 
 
     chatFormButton.addEventListener('click', async function(event) {
         event.preventDefault();
@@ -12,10 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        addMessage('Você', userMessage, 'user-message');
+        addMessage('Você', userMessage);
         chatInput.value = '';
 
-        const thinkingMessage = addMessage('Nila', 'Pensando...', 'assistant-message', true);
+        const thinkingMessage = addMessage('Nila', 'Pensando...', true);
 
         try {
             const runResponse = await fetch('/run_crew', {
@@ -39,11 +38,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const result = await pollForResult(taskId);
             
-            updateMessage(thinkingMessage, result.result);
+            updateMessage(thinkingMessage, 'Nila', result.result);
 
         } catch (error) {
             console.error('Erro ao processar a solicitação:', error);
-            updateMessage(thinkingMessage, 'Desculpe, ocorreu um erro ao tentar processar sua pergunta.');
+            updateMessage(thinkingMessage, 'Nila', 'Desculpe, ocorreu um erro ao tentar processar sua pergunta.');
         }
     });
 
@@ -76,15 +75,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function addMessage(sender, text, messageClass, isThinking = false) {
+    function addMessage(sender, text, isThinking = false) {
         const messageElement = document.createElement('div');
-        messageElement.classList.add('message', messageClass);
+        messageElement.classList.add('message', sender.toLowerCase() === 'nila' ? 'nila' : 'user');
         
         const senderElement = document.createElement('strong');
         senderElement.textContent = sender;
         
         const textElement = document.createElement('p');
-        textElement.style.margin = '0';
         textElement.textContent = text;
         
         if (isThinking) {
@@ -93,12 +91,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         messageElement.appendChild(senderElement);
         messageElement.appendChild(textElement);
-        messagesContainer.appendChild(messageElement);
-        chatContainer.scrollTop = chatContainer.scrollHeight; 
+        chatBox.appendChild(messageElement);
+        chatBox.scrollTop = chatBox.scrollHeight; 
         return messageElement;
     }
 
-    function updateMessage(messageElement, newText) {
+    function updateMessage(messageElement, sender, newText) {
         const existingTextElement = messageElement.querySelector('p');
         existingTextElement.innerHTML = ''; 
         existingTextElement.textContent = newText;

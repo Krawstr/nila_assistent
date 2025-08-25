@@ -1,21 +1,17 @@
 from ddgs import DDGS
-from crewai.tools import BaseTool
-from pydantic import BaseModel, Field
-
-class SearchToolInput(BaseModel):
-    query: str = Field(description="A query de busca a ser executada")
+from crewai.tools import tool
 
 class SearchTools:
-    class DuckDuckGoSearchTool(BaseTool):
-        name: str = "Ferramenta de Busca DuckDuckGo"
-        description: str = "Use esta ferramenta para buscar informações na internet."
-        args_schema: type[BaseModel] = SearchToolInput
+    @tool("Ferramenta de Busca DuckDuckGo")
+    def DuckDuckGoSearchTool(query: str) -> str:
+        """Uma ferramenta para realizar buscas na internet usando DuckDuckGo.
+        A entrada para esta ferramenta deve ser a pergunta ou termo de busca
+        em formato de texto simples.""" 
 
-        def _run(self, query: str) -> str:
-            try:
-                with DDGS() as ddgs:
-                    results = [r for r in ddgs.text(keywords=query, max_results=5)]
-                    return str(results) if results else "Nenhum resultado encontrado."
-            except Exception as e:
-                return f"Erro ao executar a busca: {e}"
+        if isinstance(query, dict) and 'query' in query:
+            query = query['query']
+        
+        with DDGS() as ddgs:
+            results = [r for r in ddgs.text(query, max_results=5)]
+            return "\n".join(str(r) for r in results) if results else "Nenhum resultado encontrado."
 
