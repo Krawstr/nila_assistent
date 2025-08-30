@@ -3,7 +3,5 @@ __pycache__/
 .DS_Store
 .lock
 output
-config
-create_db.py
 base
 database

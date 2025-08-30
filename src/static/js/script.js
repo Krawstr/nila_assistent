@@ -99,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateMessage(messageElement, sender, newText) {
         const existingTextElement = messageElement.querySelector('p');
         existingTextElement.innerHTML = ''; 
-        existingTextElement.textContent = newText;
+        
+        existingTextElement.innerHTML = marked.parse(newText);
     }
 });

@@ -1,14 +1,15 @@
 :root {
-    --background-color: #0d1117; 
-    --container-background: #161b22; 
-    --sidebar-background: #161b22; 
-    --message-assistant: #21262d; 
-    --message-user: #234e86; 
-    --primary-text-color: #c9d1d9; 
-    --secondary-text-color: #8b949e; 
-    --border-color: #30363d; 
-    --hover-color: #4895fd; 
-    --input-background: #0d1117; 
+    --background-color: #0d1117;
+    --container-background: #161b22;
+    --sidebar-background: #161b22;
+    --message-assistant: #21262d;
+    --message-user: #234e86;
+    --primary-text-color: #c9d1d9;
+    --secondary-text-color: #8b949e;
+    --border-color: #30363d;
+    --accent-color: #3081f7; 
+    --hover-color: #4895fd;
+    --input-background: #0d1117;
 }
 
 body {
@@ -18,7 +19,7 @@ body {
     color: var(--primary-text-color);
     display: flex;
     height: 100vh;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .main-container {
@@ -34,7 +35,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    border-right: 1px solid var(--border-color); 
+    border-right: 1px solid var(--border-color);
     transition: width 0.3s ease;
 }
 
@@ -52,6 +53,7 @@ body {
     font-weight: 500;
     cursor: pointer;
     transition: background-color 0.2s ease, border-color 0.2s ease;
+    width: 100%;
 }
 
 .new-chat-btn:hover {
@@ -110,18 +112,24 @@ body {
     line-height: 1.6;
 }
 
-.user-message {
-    background-color: var(--message-user);
-    color: #ffffff; 
-    align-self: flex-end;
-    border-bottom-right-radius: 6px; 
+.message strong { 
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
 }
 
-.assistant-message {
+.message.user {
+    background-color: var(--message-user);
+    color: #ffffff;
+    align-self: flex-end;
+    border-bottom-right-radius: 6px;
+}
+
+.message.nila {
     background-color: var(--message-assistant);
     color: var(--primary-text-color);
     align-self: flex-start;
-    border-bottom-left-radius: 6px; 
+    border-bottom-left-radius: 6px;
 }
 
 .input-area-container {
@@ -129,7 +137,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(to top, rgba(13, 17, 23, 0.9), transparent); /* Degradê suave */
+    background: linear-gradient(to top, rgba(13, 17, 23, 1), transparent);
 }
 
 #input-area {
@@ -182,6 +190,65 @@ body {
     margin-top: 1rem;
 }
 
-.hidden {
-    display: none;
+/* --- ESTILOS PARA MARKDOWN --- */
+
+.message.nila p {
+    margin: 0; 
+}
+
+.message.nila h1, .message.nila h2, .message.nila h3 {
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.3em;
+}
+
+.message.nila h1 { font-size: 1.5em; }
+.message.nila h2 { font-size: 1.3em; }
+.message.nila h3 { font-size: 1.1em; }
+
+.message.nila ul, .message.nila ol {
+    padding-left: 25px;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+}
+
+.message.nila li {
+    margin-bottom: 0.5em;
+}
+
+/* Links */
+.message.nila a {
+    color: var(--hover-color);
+    text-decoration: none;
+}
+.message.nila a:hover {
+    text-decoration: underline;
+}
+
+.message.nila pre {
+    background-color: var(--background-color);
+    padding: 1em;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.message.nila code {
+    background-color: rgba(139, 148, 158, 0.2);
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    border-radius: 6px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.message.nila pre code {
+    background-color: transparent; 
+    padding: 0;
+    margin: 0;
+    font-size: inherit;
+    border-radius: 0;
 }

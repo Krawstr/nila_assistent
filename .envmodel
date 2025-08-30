@@ -1,2 +1,7 @@
 GOOGLE_API_KEY=""
+GEMINI_API_KEY=""
 
+É necessario que você defina sua chave de API duas vezes se estiver usando o Gemini. O motivo disso é que o CrewAI utiliza
+a biblioteca LiteLLM para comunicação do agente com LLMs e também usa a biblioteca EmbedChain para ferramentas RAG.
+
+E ai gera pontos conflitantes. Então de acordo com a documentação de cada biblioteca, você deve definir sua chave API igual deixei de exemplo a cima.

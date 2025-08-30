@@ -63,9 +63,13 @@ class AgentsCrew():
     
     @task
     def nila_final_report(self) -> Task:
-        return Task(config=self.tasks_config['nila_final_report'], agent=self.nila(),
-                     context=[self.raga_data_retrieval()])
-
+        return Task(
+            config=self.tasks_config['nila_final_report'], 
+            agent=self.nila(),
+            context=[self.raga_data_retrieval()],
+            description=self.tasks_config['nila_final_report']['description'] +
+            "\n\n**Instrução para Teste de Memória:** Se o usuário fizer uma pergunta de acompanhamento sobre a primeira resposta, reconheça que a conversa já começou e retome o assunto de forma fluida. Por exemplo: 'Continuando nossa conversa sobre...'"
+    )
     @crew
     def career_crew(self) -> Crew:
         return Crew(
@@ -90,13 +94,20 @@ class AgentsCrew():
 
 
 # if __name__ == "__main__":
-#     print("Iniciando o Crew de Carreira...")
+#     print("Iniciando o teste de memória...")
 #     my_crew = AgentsCrew()
-#     inputs = {'topic': 'quero saber quanto ganha um analista de sistemas.'}
-#     result = my_crew.kickoff(inputs=inputs) 
 
+#     first_input = {'topic': 'salário de um analista de sistemas'}
+#     first_result = my_crew.kickoff(inputs=first_input)
 #     print("\n\n########################")
-#     print("## Execução do Crew Finalizada!")
+#     print("## Resultado da 1ª Pergunta:")
 #     print("########################\n")
-#     print("Resultado:")
-#     print(result)
+#     print(first_result)
+    
+#     second_input = {'topic': 'e o que é preciso para ser um?'} 
+
+#     second_result = my_crew.kickoff(inputs=second_input)
+#     print("\n\n########################")
+#     print("## Resultado da 2ª Pergunta (com memória):")
+#     print("########################\n")
+#     print(second_result)
