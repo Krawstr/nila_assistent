@@ -93,7 +93,8 @@ Nila é uma assistente de carreira inteligente e interativa, projetada para resp
 1.  **Crie um arquivo `.env`** na raiz do diretório do projeto.
 2.  **Adicione sua chave de API do Google AI** ao arquivo `.env`:
     ```
-    GOOGLE_API_KEY="sua_chave_de_api_do_google" 
+    GOOGLE_API_KEY="sua_chave_de_api_do_google"
+    GEMINI_API_KEY="sua_chave_de_api_do_google" 
     ```
 
     OBS: No projeto utilizei a API do Gemini. Porém, caso você esteja utilizando a versão gratuita, recomendo optar por ferramentas e tecnologias como o Ollama (pretendo migrar o projeto para o Ollama no futuro).
