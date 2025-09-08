@@ -1,4 +1,3 @@
-# rag_agent.py
 import os
 from dotenv import load_dotenv
 from langchain_chroma.vectorstores import Chroma
